@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapleleaf.blog.dao.LeaveWordMapper" >
+  <resultMap id="BaseResultMap" type="com.mapleleaf.blog.entity.LeaveWord" >
+    <id column="LW_ID" property="lwId" jdbcType="INTEGER" />
+    <result column="LW_UNAME" property="lwUname" jdbcType="VARCHAR" />
+    <result column="LW_MAILBOX" property="lwMailbox" jdbcType="VARCHAR" />
+    <result column="LW_CONTENT" property="lwContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    LW_ID, LW_UNAME, LW_MAILBOX, LW_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from leaveword
+    where LW_ID = #{lwId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from leaveword
+    where LW_ID = #{lwId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mapleleaf.blog.entity.LeaveWord" >
+    insert into leaveword (LW_ID, LW_UNAME, LW_MAILBOX, 
+      LW_CONTENT)
+    values (#{lwId,jdbcType=INTEGER}, #{lwUname,jdbcType=VARCHAR}, #{lwMailbox,jdbcType=VARCHAR}, 
+      #{lwContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mapleleaf.blog.entity.LeaveWord" >
+    insert into leaveword
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lwId != null" >
+        LW_ID,
+      </if>
+      <if test="lwUname != null" >
+        LW_UNAME,
+      </if>
+      <if test="lwMailbox != null" >
+        LW_MAILBOX,
+      </if>
+      <if test="lwContent != null" >
+        LW_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lwId != null" >
+        #{lwId,jdbcType=INTEGER},
+      </if>
+      <if test="lwUname != null" >
+        #{lwUname,jdbcType=VARCHAR},
+      </if>
+      <if test="lwMailbox != null" >
+        #{lwMailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="lwContent != null" >
+        #{lwContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mapleleaf.blog.entity.LeaveWord" >
+    update leaveword
+    <set >
+      <if test="lwUname != null" >
+        LW_UNAME = #{lwUname,jdbcType=VARCHAR},
+      </if>
+      <if test="lwMailbox != null" >
+        LW_MAILBOX = #{lwMailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="lwContent != null" >
+        LW_CONTENT = #{lwContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LW_ID = #{lwId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mapleleaf.blog.entity.LeaveWord" >
+    update leaveword
+    set LW_UNAME = #{lwUname,jdbcType=VARCHAR},
+      LW_MAILBOX = #{lwMailbox,jdbcType=VARCHAR},
+      LW_CONTENT = #{lwContent,jdbcType=VARCHAR}
+    where LW_ID = #{lwId,jdbcType=INTEGER}
+  </update>
+</mapper>

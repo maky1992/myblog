@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapleleaf.blog.dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.mapleleaf.blog.entity.Comment" >
+    <id column="COMM_ID" property="commId" jdbcType="INTEGER" />
+    <result column="COMM_UNAME" property="commUname" jdbcType="VARCHAR" />
+    <result column="COMM_MAILBOX" property="commMailbox" jdbcType="VARCHAR" />
+    <result column="COMM_CONTENT" property="commContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    COMM_ID, COMM_UNAME, COMM_MAILBOX, COMM_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where COMM_ID = #{commId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from comment
+    where COMM_ID = #{commId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mapleleaf.blog.entity.Comment" >
+    insert into comment (COMM_ID, COMM_UNAME, COMM_MAILBOX, 
+      COMM_CONTENT)
+    values (#{commId,jdbcType=INTEGER}, #{commUname,jdbcType=VARCHAR}, #{commMailbox,jdbcType=VARCHAR}, 
+      #{commContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mapleleaf.blog.entity.Comment" >
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commId != null" >
+        COMM_ID,
+      </if>
+      <if test="commUname != null" >
+        COMM_UNAME,
+      </if>
+      <if test="commMailbox != null" >
+        COMM_MAILBOX,
+      </if>
+      <if test="commContent != null" >
+        COMM_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commId != null" >
+        #{commId,jdbcType=INTEGER},
+      </if>
+      <if test="commUname != null" >
+        #{commUname,jdbcType=VARCHAR},
+      </if>
+      <if test="commMailbox != null" >
+        #{commMailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="commContent != null" >
+        #{commContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mapleleaf.blog.entity.Comment" >
+    update comment
+    <set >
+      <if test="commUname != null" >
+        COMM_UNAME = #{commUname,jdbcType=VARCHAR},
+      </if>
+      <if test="commMailbox != null" >
+        COMM_MAILBOX = #{commMailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="commContent != null" >
+        COMM_CONTENT = #{commContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where COMM_ID = #{commId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mapleleaf.blog.entity.Comment" >
+    update comment
+    set COMM_UNAME = #{commUname,jdbcType=VARCHAR},
+      COMM_MAILBOX = #{commMailbox,jdbcType=VARCHAR},
+      COMM_CONTENT = #{commContent,jdbcType=VARCHAR}
+    where COMM_ID = #{commId,jdbcType=INTEGER}
+  </update>
+</mapper>

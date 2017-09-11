@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapleleaf.blog.dao.SoftToolsMapper" >
+  <resultMap id="BaseResultMap" type="com.mapleleaf.blog.entity.SoftTools" >
+    <id column="TOOL_ID" property="toolId" jdbcType="INTEGER" />
+    <result column="TOOL_NAME" property="toolName" jdbcType="VARCHAR" />
+    <result column="TOOL_LINK" property="toolLink" jdbcType="VARCHAR" />
+    <result column="TOOL_PASSWORD" property="toolPassword" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TOOL_ID, TOOL_NAME, TOOL_LINK, TOOL_PASSWORD
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from softtools
+    where TOOL_ID = #{toolId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from softtools
+    where TOOL_ID = #{toolId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mapleleaf.blog.entity.SoftTools" >
+    insert into softtools (TOOL_ID, TOOL_NAME, TOOL_LINK, 
+      TOOL_PASSWORD)
+    values (#{toolId,jdbcType=INTEGER}, #{toolName,jdbcType=VARCHAR}, #{toolLink,jdbcType=VARCHAR}, 
+      #{toolPassword,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mapleleaf.blog.entity.SoftTools" >
+    insert into softtools
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="toolId != null" >
+        TOOL_ID,
+      </if>
+      <if test="toolName != null" >
+        TOOL_NAME,
+      </if>
+      <if test="toolLink != null" >
+        TOOL_LINK,
+      </if>
+      <if test="toolPassword != null" >
+        TOOL_PASSWORD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="toolId != null" >
+        #{toolId,jdbcType=INTEGER},
+      </if>
+      <if test="toolName != null" >
+        #{toolName,jdbcType=VARCHAR},
+      </if>
+      <if test="toolLink != null" >
+        #{toolLink,jdbcType=VARCHAR},
+      </if>
+      <if test="toolPassword != null" >
+        #{toolPassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mapleleaf.blog.entity.SoftTools" >
+    update softtools
+    <set >
+      <if test="toolName != null" >
+        TOOL_NAME = #{toolName,jdbcType=VARCHAR},
+      </if>
+      <if test="toolLink != null" >
+        TOOL_LINK = #{toolLink,jdbcType=VARCHAR},
+      </if>
+      <if test="toolPassword != null" >
+        TOOL_PASSWORD = #{toolPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TOOL_ID = #{toolId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mapleleaf.blog.entity.SoftTools" >
+    update softtools
+    set TOOL_NAME = #{toolName,jdbcType=VARCHAR},
+      TOOL_LINK = #{toolLink,jdbcType=VARCHAR},
+      TOOL_PASSWORD = #{toolPassword,jdbcType=VARCHAR}
+    where TOOL_ID = #{toolId,jdbcType=INTEGER}
+  </update>
+</mapper>

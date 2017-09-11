@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapleleaf.blog.dao.DiaryMapper" >
+  <resultMap id="BaseResultMap" type="com.mapleleaf.blog.entity.Diary" >
+    <id column="DIARY_ID" property="diaryId" jdbcType="INTEGER" />
+    <result column="DIARY_TITLE" property="diaryTitle" jdbcType="VARCHAR" />
+    <result column="DIARY_PICTURE" property="diaryPicture" jdbcType="VARCHAR" />
+    <result column="DIARY_MUSIC" property="diaryMusic" jdbcType="VARCHAR" />
+    <result column="DIARY_BROWSER" property="diaryBrowser" jdbcType="INTEGER" />
+    <result column="COMM_ID" property="commId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mapleleaf.blog.entity.Diary" extends="BaseResultMap" >
+    <result column="DIARY_CONTENT" property="diaryContent" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DIARY_ID, DIARY_TITLE, DIARY_PICTURE, DIARY_MUSIC, DIARY_BROWSER, COMM_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    DIARY_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from diary
+    where DIARY_ID = #{diaryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from diary
+    where DIARY_ID = #{diaryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mapleleaf.blog.entity.Diary" >
+    insert into diary (DIARY_ID, DIARY_TITLE, DIARY_PICTURE, 
+      DIARY_MUSIC, DIARY_BROWSER, COMM_ID, 
+      DIARY_CONTENT)
+    values (#{diaryId,jdbcType=INTEGER}, #{diaryTitle,jdbcType=VARCHAR}, #{diaryPicture,jdbcType=VARCHAR}, 
+      #{diaryMusic,jdbcType=VARCHAR}, #{diaryBrowser,jdbcType=INTEGER}, #{commId,jdbcType=INTEGER}, 
+      #{diaryContent,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mapleleaf.blog.entity.Diary" >
+    insert into diary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="diaryId != null" >
+        DIARY_ID,
+      </if>
+      <if test="diaryTitle != null" >
+        DIARY_TITLE,
+      </if>
+      <if test="diaryPicture != null" >
+        DIARY_PICTURE,
+      </if>
+      <if test="diaryMusic != null" >
+        DIARY_MUSIC,
+      </if>
+      <if test="diaryBrowser != null" >
+        DIARY_BROWSER,
+      </if>
+      <if test="commId != null" >
+        COMM_ID,
+      </if>
+      <if test="diaryContent != null" >
+        DIARY_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="diaryId != null" >
+        #{diaryId,jdbcType=INTEGER},
+      </if>
+      <if test="diaryTitle != null" >
+        #{diaryTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryPicture != null" >
+        #{diaryPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryMusic != null" >
+        #{diaryMusic,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryBrowser != null" >
+        #{diaryBrowser,jdbcType=INTEGER},
+      </if>
+      <if test="commId != null" >
+        #{commId,jdbcType=INTEGER},
+      </if>
+      <if test="diaryContent != null" >
+        #{diaryContent,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mapleleaf.blog.entity.Diary" >
+    update diary
+    <set >
+      <if test="diaryTitle != null" >
+        DIARY_TITLE = #{diaryTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryPicture != null" >
+        DIARY_PICTURE = #{diaryPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryMusic != null" >
+        DIARY_MUSIC = #{diaryMusic,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryBrowser != null" >
+        DIARY_BROWSER = #{diaryBrowser,jdbcType=INTEGER},
+      </if>
+      <if test="commId != null" >
+        COMM_ID = #{commId,jdbcType=INTEGER},
+      </if>
+      <if test="diaryContent != null" >
+        DIARY_CONTENT = #{diaryContent,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where DIARY_ID = #{diaryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mapleleaf.blog.entity.Diary" >
+    update diary
+    set DIARY_TITLE = #{diaryTitle,jdbcType=VARCHAR},
+      DIARY_PICTURE = #{diaryPicture,jdbcType=VARCHAR},
+      DIARY_MUSIC = #{diaryMusic,jdbcType=VARCHAR},
+      DIARY_BROWSER = #{diaryBrowser,jdbcType=INTEGER},
+      COMM_ID = #{commId,jdbcType=INTEGER},
+      DIARY_CONTENT = #{diaryContent,jdbcType=LONGVARBINARY}
+    where DIARY_ID = #{diaryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mapleleaf.blog.entity.Diary" >
+    update diary
+    set DIARY_TITLE = #{diaryTitle,jdbcType=VARCHAR},
+      DIARY_PICTURE = #{diaryPicture,jdbcType=VARCHAR},
+      DIARY_MUSIC = #{diaryMusic,jdbcType=VARCHAR},
+      DIARY_BROWSER = #{diaryBrowser,jdbcType=INTEGER},
+      COMM_ID = #{commId,jdbcType=INTEGER}
+    where DIARY_ID = #{diaryId,jdbcType=INTEGER}
+  </update>
+</mapper>

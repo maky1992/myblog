@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapleleaf.blog.dao.ArticlesMapper" >
+  <resultMap id="BaseResultMap" type="com.mapleleaf.blog.entity.Articles" >
+    <id column="ART_ID" property="artId" jdbcType="INTEGER" />
+    <result column="ART_TITLE" property="artTitle" jdbcType="VARCHAR" />
+    <result column="ART_KEYWORD" property="artKeyword" jdbcType="VARCHAR" />
+    <result column="ART_PUBLISHDATE" property="artPublishdate" jdbcType="VARCHAR" />
+    <result column="ART_PICTURE" property="artPicture" jdbcType="VARCHAR" />
+    <result column="ART_ISRECOMMEND" property="artIsrecommend" jdbcType="CHAR" />
+    <result column="ART_BROWSER" property="artBrowser" jdbcType="INTEGER" />
+    <result column="TYPE_ID" property="typeId" jdbcType="INTEGER" />
+    <result column="COMM_ID" property="commId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mapleleaf.blog.entity.Articles" extends="BaseResultMap" >
+    <result column="ART_CONTENT" property="artContent" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ART_ID, ART_TITLE, ART_KEYWORD, ART_PUBLISHDATE, ART_PICTURE, ART_ISRECOMMEND, ART_BROWSER, 
+    TYPE_ID, COMM_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    ART_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from articles
+    where ART_ID = #{artId,jdbcType=INTEGER}
+  </select>
+   <select id="selectArticlesList" resultMap="ResultMapWithBLOBs"  >
+    select 
+    <include refid="Base_Column_List" />
+    from articles
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from articles
+    where ART_ID = #{artId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mapleleaf.blog.entity.Articles" >
+    insert into articles (ART_ID, ART_TITLE, ART_KEYWORD, 
+      ART_PUBLISHDATE, ART_PICTURE, ART_ISRECOMMEND, 
+      ART_BROWSER, TYPE_ID, COMM_ID, 
+      ART_CONTENT)
+    values (#{artId,jdbcType=INTEGER}, #{artTitle,jdbcType=VARCHAR}, #{artKeyword,jdbcType=VARCHAR}, 
+      #{artPublishdate,jdbcType=VARCHAR}, #{artPicture,jdbcType=VARCHAR}, #{artIsrecommend,jdbcType=CHAR}, 
+      #{artBrowser,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{commId,jdbcType=INTEGER}, 
+      #{artContent,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mapleleaf.blog.entity.Articles" >
+    insert into articles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="artId != null" >
+        ART_ID,
+      </if>
+      <if test="artTitle != null" >
+        ART_TITLE,
+      </if>
+      <if test="artKeyword != null" >
+        ART_KEYWORD,
+      </if>
+      <if test="artPublishdate != null" >
+        ART_PUBLISHDATE,
+      </if>
+      <if test="artPicture != null" >
+        ART_PICTURE,
+      </if>
+      <if test="artIsrecommend != null" >
+        ART_ISRECOMMEND,
+      </if>
+      <if test="artBrowser != null" >
+        ART_BROWSER,
+      </if>
+      <if test="typeId != null" >
+        TYPE_ID,
+      </if>
+      <if test="commId != null" >
+        COMM_ID,
+      </if>
+      <if test="artContent != null" >
+        ART_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="artId != null" >
+        #{artId,jdbcType=INTEGER},
+      </if>
+      <if test="artTitle != null" >
+        #{artTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="artKeyword != null" >
+        #{artKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="artPublishdate != null" >
+        #{artPublishdate,jdbcType=VARCHAR},
+      </if>
+      <if test="artPicture != null" >
+        #{artPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="artIsrecommend != null" >
+        #{artIsrecommend,jdbcType=CHAR},
+      </if>
+      <if test="artBrowser != null" >
+        #{artBrowser,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="commId != null" >
+        #{commId,jdbcType=INTEGER},
+      </if>
+      <if test="artContent != null" >
+        #{artContent,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mapleleaf.blog.entity.Articles" >
+    update articles
+    <set >
+      <if test="artTitle != null" >
+        ART_TITLE = #{artTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="artKeyword != null" >
+        ART_KEYWORD = #{artKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="artPublishdate != null" >
+        ART_PUBLISHDATE = #{artPublishdate,jdbcType=VARCHAR},
+      </if>
+      <if test="artPicture != null" >
+        ART_PICTURE = #{artPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="artIsrecommend != null" >
+        ART_ISRECOMMEND = #{artIsrecommend,jdbcType=CHAR},
+      </if>
+      <if test="artBrowser != null" >
+        ART_BROWSER = #{artBrowser,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        TYPE_ID = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="commId != null" >
+        COMM_ID = #{commId,jdbcType=INTEGER},
+      </if>
+      <if test="artContent != null" >
+        ART_CONTENT = #{artContent,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where ART_ID = #{artId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mapleleaf.blog.entity.Articles" >
+    update articles
+    set ART_TITLE = #{artTitle,jdbcType=VARCHAR},
+      ART_KEYWORD = #{artKeyword,jdbcType=VARCHAR},
+      ART_PUBLISHDATE = #{artPublishdate,jdbcType=VARCHAR},
+      ART_PICTURE = #{artPicture,jdbcType=VARCHAR},
+      ART_ISRECOMMEND = #{artIsrecommend,jdbcType=CHAR},
+      ART_BROWSER = #{artBrowser,jdbcType=INTEGER},
+      TYPE_ID = #{typeId,jdbcType=INTEGER},
+      COMM_ID = #{commId,jdbcType=INTEGER},
+      ART_CONTENT = #{artContent,jdbcType=LONGVARBINARY}
+    where ART_ID = #{artId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mapleleaf.blog.entity.Articles" >
+    update articles
+    set ART_TITLE = #{artTitle,jdbcType=VARCHAR},
+      ART_KEYWORD = #{artKeyword,jdbcType=VARCHAR},
+      ART_PUBLISHDATE = #{artPublishdate,jdbcType=VARCHAR},
+      ART_PICTURE = #{artPicture,jdbcType=VARCHAR},
+      ART_ISRECOMMEND = #{artIsrecommend,jdbcType=CHAR},
+      ART_BROWSER = #{artBrowser,jdbcType=INTEGER},
+      TYPE_ID = #{typeId,jdbcType=INTEGER},
+      COMM_ID = #{commId,jdbcType=INTEGER}
+    where ART_ID = #{artId,jdbcType=INTEGER}
+  </update>
+</mapper>

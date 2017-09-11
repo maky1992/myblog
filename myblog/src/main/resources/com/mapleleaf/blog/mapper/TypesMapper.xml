@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapleleaf.blog.dao.TypesMapper" >
+  <resultMap id="BaseResultMap" type="com.mapleleaf.blog.entity.Types" >
+    <id column="TYPE_ID" property="typeId" jdbcType="INTEGER" />
+    <result column="TYPE_NAME" property="typeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TYPE_ID, TYPE_NAME
+  </sql>
+  <select id="openById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from types
+    where TYPE_ID = #{typeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllTypes" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+    from types
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from types
+    where TYPE_ID = #{typeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mapleleaf.blog.entity.Types" >
+    insert into types (TYPE_ID, TYPE_NAME)
+    values (#{typeId,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mapleleaf.blog.entity.Types" >
+    insert into types
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="typeId != null" >
+        TYPE_ID,
+      </if>
+      <if test="typeName != null" >
+        TYPE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mapleleaf.blog.entity.Types" >
+    update types
+    <set >
+      <if test="typeName != null" >
+        TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TYPE_ID = #{typeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mapleleaf.blog.entity.Types" >
+    update types
+    set TYPE_NAME = #{typeName,jdbcType=VARCHAR}
+    where TYPE_ID = #{typeId,jdbcType=INTEGER}
+  </update>
+</mapper>
