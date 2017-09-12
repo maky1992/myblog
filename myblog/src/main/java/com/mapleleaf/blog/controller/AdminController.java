@@ -45,7 +45,7 @@ public class AdminController {
 	}
 	/**
 	 * 转向修改密码页面
-	 * @return
+	 * @return 
 	 */
 	@RequestMapping(value="/toModifyPassword",method=RequestMethod.GET)
 	public String modifyPasswordGet(){
