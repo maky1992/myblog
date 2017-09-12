@@ -18,7 +18,7 @@ public class AdminController {
 	
 	/**
 	 * 转向登录页面
-	 * @return
+	 * @return  
 	 */
 	@RequestMapping(value="/toLogin",method=RequestMethod.GET)
 	public String loginGet(){
@@ -27,7 +27,7 @@ public class AdminController {
 	/**
 	 * 管理员登录
 	 * @param admin
-	 * @param session
+	 * @param session  
 	 * @param model
 	 * @return
 	 */
