@@ -60,7 +60,7 @@ public class articlesController {
 		flag = articleService.insert(article);
 		if(flag != 0){
 			model.addAttribute("msg", "添加成功！");
-			return "articles/articleAdd";
+			return "redirect:/article/toArticleList";
 		}else{
 			model.addAttribute("msg", "添加失败！");
 			return "articles/articleAdd";
