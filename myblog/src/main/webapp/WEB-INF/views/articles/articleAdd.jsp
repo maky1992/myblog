@@ -99,9 +99,22 @@
 									</div>
 									
 									<div class="form-group">
+
 										<label for="inputPassword3" class="col-sm-1 control-label">博文内容</label>
 										<div class="col-sm-11">
 											<textarea  name = "artContent" class="form-control" id="artContent" >   
+                      </textarea>
+										<label for="inputPassword3" class="col-sm-3 control-label">选择博文封页</label>
+										<div class="col-sm-7">
+											 <input type="file"name="artPicture"/><br>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">博文内容</label>
+										<div class="col-sm-7">
+											<textarea  name = "artContent" class="form-control"  cols = "50"
+												id="artContent" >   
 											</textarea>
 											<script>CKEDITOR.replace( 'artContent' );</script>
 										</div>

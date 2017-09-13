@@ -1,8 +1,12 @@
 package com.mapleleaf.blog.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +52,10 @@ public class articlesController {
 	 * @return
 	 */
 	@RequestMapping(value="/addArticle",method=RequestMethod.POST)
-	public String addArticle(Model model,Articles article){
+	public String addArticle(Model model,Articles article,HttpServletRequest request){
+		// 获取封页相对路径
+		String realpath=request.getRealPath(article.getArtPicture());
+		article.setArtPicture(realpath);
 		Integer flag = 0;
 		flag = articleService.insert(article);
 		if(flag != 0){
