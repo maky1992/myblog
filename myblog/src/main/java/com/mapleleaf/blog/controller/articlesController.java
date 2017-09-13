@@ -22,7 +22,7 @@ public class articlesController {
 	private ITypeService typeService;
 	
 	/**
-	 * 转向分类列表页面
+	 * 转向博文列表页面
 	 * @return
 	 */
 	@RequestMapping(value="/toArticleList",method=RequestMethod.GET)
@@ -53,7 +53,7 @@ public class articlesController {
 		flag = articleService.insert(article);
 		if(flag != 0){
 			model.addAttribute("msg", "添加成功！");
-			return "articles/articleAdd";
+			return "redirect:/article/toArticleList";
 		}else{
 			model.addAttribute("msg", "添加失败！");
 			return "articles/articleAdd";

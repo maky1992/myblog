@@ -45,14 +45,14 @@
 									<div class="form-group">
 										<label for="inputEmail3" class="col-sm-3 control-label">TypeId</label>
 										<div class="col-sm-7">
-											<input type="test" required parsley-type="email" value="${typeId}" readonly
+											<input type="text" required  value="${typeId}" readonly
 												class="form-control" id="inputEmail3" name = "typeId">
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="inputPassword3" class="col-sm-3 control-label">TypeName</label>
 										<div class="col-sm-7">
-											<input type="test" required class="form-control" value="" 
+											<input type="text" required class="form-control" value="" 
 												id="inputPassword3" name = "typeName">  
 										</div>
 									</div>

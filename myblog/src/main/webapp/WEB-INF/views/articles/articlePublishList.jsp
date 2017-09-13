@@ -13,22 +13,13 @@
 <!-- Mirrored from condorthemes.com/cleanzone/ by HTTrack Website Copier/3.x [XR&CO'2013], Mon, 31 Mar 2014 14:31:31 GMT -->
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
     <title>博客后台管理系统</title>
-<script type="text/javascript">
-//提示信息
-var msg = "";
-  msg="${msg}";
-  if(msg != null && msg != ""){
-  alert(msg);
-  window.location.href="<%=basePath%>article/toArticleList";
-} 
-</script>
+
   
 </head>
-<body onload="init">
+<body>
 	<jsp:include page="../admin/top.jsp" flush="false"></jsp:include>
 		<div id="cl-wrapper" class="fixed-menu">
 		 
@@ -95,6 +86,26 @@ var msg = "";
 			  </div>
 			</div> 
 </body>
-
+<script type="text/javascript">
+	$(".sub-menu .type").addClass('active');
+	
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		  //initialize the javascript
+		  App.init();
+		  App.dataTables();
+		  	
+		  //Horizontal Icons dataTable
+		  $('#datatable-icons').dataTable();
+		});
+	//提示信息
+	var msg = "";
+	  msg="${msg}";
+	  if(msg != null && msg != ""){
+	  alert(msg);
+	  window.location.href="<%=basePath%>article/toArticleList";
+	} 
+</script>
 
 </html>

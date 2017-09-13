@@ -17,7 +17,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>博客后台管理系统</title>
-
+<script type="text/javascript" src="<%=basePath%>assets/js/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="<%=basePath%>assets/js/ckeditor/ckeditor_msg.js"></script>
   
 </head>
 <body onload = "msgConfirm()">
