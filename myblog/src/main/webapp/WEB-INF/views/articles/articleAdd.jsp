@@ -87,6 +87,13 @@
 									</div>
 									
 									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">选择博文封页</label>
+										<div class="col-sm-7">
+											 <input type="file"name="artPicture"/><br>
+										</div>
+									</div>
+									
+									<div class="form-group">
 										<label for="inputPassword3" class="col-sm-3 control-label">博文内容</label>
 										<div class="col-sm-7">
 											<textarea  name = "artContent" class="form-control"  cols = "50"
