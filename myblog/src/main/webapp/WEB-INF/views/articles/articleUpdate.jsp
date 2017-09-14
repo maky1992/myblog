@@ -20,13 +20,13 @@
 <script type="text/javascript" src="<%=basePath%>assets/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	$(function(){
-		CKEDITOR.replace('artContent')
+		CKEDITOR.replace('artContent');
 		$("#confirm").click(function(){
-			
-			$('#artContent').val(CKEDITOR.instances.artContent.getData());
+			$('#artContent').val(editor.getData());
 		});
 	});
 </script>
+	
 </head>
 <body>
 	<jsp:include page="../admin/top.jsp" flush="false"></jsp:include>
@@ -55,7 +55,7 @@
 									<div class="form-group">
 										<label for="inputPassword3" class="col-sm-1 control-label">博文标题</label>
 										<div class="col-sm-7">
-											<input type="text"  name = "artTitle" class="form-control" value="" 
+											<input type="text"  name = "artTitle" class="form-control" value="${article.artTitle }" 
 												id="artTitle" >  
 										</div>
 									</div>
@@ -63,9 +63,12 @@
 										<label for="inputEmail3" class="col-sm-1 control-label">博文分类</label>
 										<div class="col-sm-7">
 											<select name = "typeId" id = "typeId" class="form-control">
-											<c:forEach items="${typesList }" var="types">
-											<option value="${types.typeId }" >${types.typeName}</option>
-											</c:forEach>
+												<c:forEach items="${typesList }" var="types">
+													<c:if test="${types.typeId eq article.typeId }">
+														<option value="${types.typeId }" selected="selected">${types.typeName}</option>
+													</c:if>
+													<option value="${types.typeId }">${types.typeName}</option>
+												</c:forEach>
 											</select>
 										</div>
 									</div>
@@ -74,15 +77,24 @@
 										<label for="inputPassword3" class="col-sm-1 control-label">是否推荐</label>
 										<div class="col-sm-7">
 											<select name = "artIsrecommend" id = "artIsrecommend" class="form-control">
-											<option value="0">不推荐</option>
-											<option value="1">推荐</option>
+												<c:choose>
+													<c:when test="${article.artIsrecommend==\"1\"}">
+													<option value="1" selected="selected">推荐</option>
+													<option value="0">不推荐</option>		
+													</c:when>
+													<c:otherwise>
+													<option value="1">推荐</option>
+													<option value="0" selected="selected">不推荐</option>	
+													</c:otherwise>
+												</c:choose>
 											</select>
+											
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="inputPassword3" class="col-sm-1 control-label">关键字</label>
 										<div class="col-sm-7">
-											<input type="text"  name = "artKeyword" class="form-control" value="" 
+											<input type="text"  name = "artKeyword" class="form-control" value="${article.artKeyword }" 
 												id="artKeyword" >  
 										</div>
 									</div>
@@ -98,14 +110,15 @@
 										<label for="inputPassword3" class="col-sm-1 control-label">博文内容</label>
 										<div class="col-sm-11">
 											<textarea  name = "artContent" class="form-control"  cols = "50"
-												id="artContent" >   
+												id="artContent" >${artContent }   
 											</textarea>
+											
 										</div>
 									</div>
 
 									<div class="form-group" >
 										<div class="col-sm-offset-1 col-sm-11" align = "center">
-										<button type="submit" id="confirm" class="btn btn-primary" >Confirm</button>
+										<button type="submit" class="btn btn-primary" onclick="return checkForm()">Confirm</button>
 										<button type="reset" class="btn btn-default" >Reset</button> 
 										</div>
 									</div>
@@ -119,7 +132,6 @@
 		</div>
 	</div>
 </body>
-
 
 
 </html>

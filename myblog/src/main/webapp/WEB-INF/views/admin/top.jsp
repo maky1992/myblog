@@ -114,7 +114,8 @@
     </div>
   </div>
 
-  	<script src="<%=basePath%>assets/js/jquery.min.js"></script>
+  	<script type="text/javascript" src="<%=basePath%>assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<%=basePath%>assets/js/jquery.js"></script>
     <script type="text/javascript" src="<%=basePath%>assets/js/jquery.gritter/js/jquery.gritter.js"></script>
  	<script type="text/javascript" src="<%=basePath%>assets/js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
 	<script type="text/javascript" src="<%=basePath%>assets/js/behaviour/general.js"></script>
@@ -129,8 +130,6 @@
   	<script src="<%=basePath%>assets/js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
   	<script type="text/javascript" src="<%=basePath%>assets/js/jquery.datatables/jquery.datatables.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>assets/js/jquery.datatables/bootstrap-adapter/js/datatables.js"></script>
-
-
 
   <!-- Bootstrap core JavaScript
     ================================================== -->

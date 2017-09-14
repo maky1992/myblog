@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mapleleaf.blog.entity.Articles;
 import com.mapleleaf.blog.entity.Types;
@@ -56,6 +57,7 @@ public class articlesController {
 		// 获取封页相对路径
 		String realpath=request.getRealPath(article.getArtPicture());
 		article.setArtPicture(realpath);
+		System.out.println(article.getArtContent().toString());
 		Integer flag = 0;
 		flag = articleService.insert(article);
 		if(flag != 0){
@@ -81,5 +83,26 @@ public class articlesController {
 			model.addAttribute("msg", "删除失败！");
 			return "articles/articlePublishList";
 		}
+	}
+	
+	/**
+	 * 查看详细文章
+	 * @param model
+	 * @param article
+	 * @return
+	 */
+	@RequestMapping(value="/searchArticle",method=RequestMethod.GET)
+	public String searchArticle(@RequestParam Integer artId,@RequestParam String flag,Model model){
+		Articles article;
+		article = articleService.selectByArtId(artId);
+		ArrayList<Types> typesList = null;
+		typesList = typeService.selectTypesList();
+		String str = new String(article.getArtContent());
+		System.out.println(str);
+		model.addAttribute("artContent",str);
+		model.addAttribute("typesList", typesList);
+		model.addAttribute("article", article);
+		model.addAttribute("flag", flag);
+		return "articles/articleUpdate";
 	}
 }

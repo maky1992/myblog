@@ -20,5 +20,12 @@ public interface IArticleService {
 	 * @return
 	 */
 	Integer delete(Integer artId);
+	
+	/**
+	 * 根据ID查询博文
+	 * @param artId
+	 * @return
+	 */
+	Articles selectByArtId(Integer artId);
 
 }

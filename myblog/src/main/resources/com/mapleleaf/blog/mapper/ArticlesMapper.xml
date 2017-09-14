@@ -17,11 +17,11 @@
   </resultMap>
   <sql id="Base_Column_List" >
     ART_ID, ART_TITLE, ART_KEYWORD, ART_PUBLISHDATE, ART_PICTURE, ART_ISRECOMMEND, ART_BROWSER, 
-    TYPE_ID, COMM_ID
+    TYPE_ID, COMM_ID,ART_CONTENT
   </sql>
-  <sql id="Blob_Column_List" >
+  <!-- <sql id="Blob_Column_List" >
     ART_CONTENT
-  </sql>
+  </sql> -->
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

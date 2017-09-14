@@ -24,6 +24,9 @@ public class ArticleService implements IArticleService{
 		typesList = articlesMapper.selectArticlesList();
 		return typesList;
 	}
+	/**
+	 * 添加博文
+	 */
 	@Override
 	public Integer insert(Articles article) {
 		// 获取当前日期
@@ -36,11 +39,29 @@ public class ArticleService implements IArticleService{
 		flag = articlesMapper.insert(article);
 		return flag;
 	}
+	/**
+	 * 删除博文
+	 */
 	@Override
 	public Integer delete(Integer artId) {
 		Integer flag = 0;
 		// 调用DAO方法
 		flag = articlesMapper.deleteByPrimaryKey(artId);
 		return flag;
+	}
+	
+	/**
+	 * 根据ID查询博文
+	 */
+	@Override
+	public Articles selectByArtId(Integer artId) {
+		Articles article = null;
+		try {
+			article = articlesMapper.selectByPrimaryKey(artId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return article;
 	}
 }

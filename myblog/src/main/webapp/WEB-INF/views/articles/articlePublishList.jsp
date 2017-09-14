@@ -17,18 +17,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>博客后台管理系统</title>
-<script type="text/javascript">
-//提示信息
-var msg = "";
-  msg="${msg}";
-  if(msg != null && msg != ""){
-  alert(msg);
-  window.location.href="<%=basePath%>article/toArticleList";
-} 
-</script>
   
 </head>
-<body onload="init">
+<body>
 	<jsp:include page="../admin/top.jsp" flush="false"></jsp:include>
 		<div id="cl-wrapper" class="fixed-menu">
 		 
@@ -79,8 +70,8 @@ var msg = "";
 												</c:when>
 												</c:choose>
 												<td class="center">
-													<a class="btn btn-default btn-xs" href="<%=basePath%>type/openType?typeId=${types.typeId}" data-original-title="Open" data-toggle="tooltip"><i class="fa fa-file"></i></a>
-													<a class="btn btn-primary btn-xs" href="<%=basePath%>type/updateTypeGet?typeId=${types.typeId}" data-original-title="Edit" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
+													<a class="btn btn-default btn-xs" href="<%=basePath%>article/searchArticle?artId=${types.artId}&flag=details" data-original-title="Open" data-toggle="tooltip"><i class="fa fa-file"></i></a>
+													<a class="btn btn-primary btn-xs" href="<%=basePath%>article/searchArticle?artId=${types.artId}&flag=update" data-original-title="Edit" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
 													<a class="btn btn-danger btn-xs" href="<%=basePath%>article/deleteArticle?artId=${types.artId}"  data-original-title="Remove" data-toggle="tooltip"><i class="fa fa-times"></i></a>
 												</td>
 											</tr>
@@ -95,6 +86,23 @@ var msg = "";
 			  </div>
 			</div> 
 </body>
+<script type="text/javascript">
+	$(".sub-menu .type").addClass('active');
+</script>
+<script type="text/javascript">
 
-
+	
+	$(document).ready(function(){
+	  //initialize the javascript
+	  App.init();
+	  App.dataTables();
+	  	
+	  //Horizontal Icons dataTable
+	  $('#datatable-icons').dataTable();
+	});
+	
+	
+	
+	  
+</script>
 </html>
