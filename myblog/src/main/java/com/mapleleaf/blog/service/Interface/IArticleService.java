@@ -27,5 +27,11 @@ public interface IArticleService {
 	 * @return
 	 */
 	Articles selectByArtId(Integer artId);
+	/**
+	 * 更新博文
+	 * @param artId
+	 * @return
+	 */
+	Integer updateByPrimaryKey(Articles article);
 
 }

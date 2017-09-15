@@ -64,4 +64,16 @@ public class ArticleService implements IArticleService{
 		
 		return article;
 	}
+	@Override
+	public Integer updateByPrimaryKey(Articles article) {
+		Integer flag = 0;
+		// 获取当前日期
+		Date dt=new Date();
+		// 格式化日期
+		SimpleDateFormat matter1=new SimpleDateFormat("yyyy-MM-dd");
+		article.setArtPublishdate(matter1.format(dt));
+		// 调用DAO方法
+		flag = articlesMapper.updateByPrimaryKey(article);
+		return flag;
+	}
 }

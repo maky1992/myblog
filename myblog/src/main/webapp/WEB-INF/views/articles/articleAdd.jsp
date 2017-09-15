@@ -49,8 +49,7 @@
 							<div class="header">
 							</div>
 							<div class="content">
-								<form action = "<%=basePath%>article/addArticle" method = "post" class="form-horizontal" role="form" data-parsley-validate
-									novalidate>
+								<form action = "<%=basePath%>article/addArticle" method = "post" class="form-horizontal" role="form" enctype="multipart/form-data" >
 									<h4 style="color:red:">${msg }</h4>
 									<div class="form-group">
 										<label for="inputPassword3" class="col-sm-1 control-label">博文标题</label>
@@ -90,8 +89,9 @@
 									<div class="form-group">
 										<label for="inputPassword3" class="col-sm-1 control-label">封面</label>
 										<div class="col-sm-7">
-											 <input type="file"name="artPicture"/><br>
+											 <input type="file" name="file"/><br>
 										</div>
+										<img id = "preview"/>
 									</div>
 									
 									<div class="form-group">

@@ -101,7 +101,11 @@
 	  $('#datatable-icons').dataTable();
 	});
 	
-	
+	var msg = "";
+	msg = "${msg}";
+	if(msg != null && msg != ""){
+		window.location.href="<%=basePath%>article/toArticleList";
+	}
 	
 	  
 </script>

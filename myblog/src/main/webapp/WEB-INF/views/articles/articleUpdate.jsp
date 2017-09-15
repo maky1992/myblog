@@ -25,10 +25,33 @@
 			$('#artContent').val(editor.getData());
 		});
 	});
+
 </script>
-	
+<script type="text/javascript">	
+function checkFlag(){
+	var flag = "";
+	flag = "${flag}";
+	if(flag == "details"){
+		document.getElementById("artId").disabled=true;
+		document.getElementById("artTitle").disabled=true;
+		document.getElementById("typeId").disabled=true;
+		document.getElementById("artIsrecommend").disabled=true;
+		document.getElementById("artKeyword").disabled=true;
+		document.getElementById("artPicture").disabled=true;
+		document.getElementById("artContent").disabled=true;
+		document.getElementById("submit").style.display = 'none';
+		}
+	 else if(flag == "update"){
+		 //document.getElementById("artId").disabled=true;
+	} 
+}
+//页面返回按钮跳转
+function goBack(){
+	window.location.href="<%=basePath%>article/toArticleList";
+}
+</script>
 </head>
-<body>
+<body onload="checkFlag();">
 	<jsp:include page="../admin/top.jsp" flush="false"></jsp:include>
 	<div id="cl-wrapper" class="fixed-menu">
 
@@ -49,9 +72,16 @@
 							<div class="header">
 							</div>
 							<div class="content">
-								<form action = "<%=basePath%>article/addArticle" method = "post" class="form-horizontal" role="form" data-parsley-validate
+								<form action = "<%=basePath%>article/updateArticles" method = "post" class="form-horizontal" enctype="multipart/form-data" role="form" data-parsley-validate
 									novalidate>
 									<h4 style="color:red:">${msg }</h4>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-1 control-label">博文ID</label>
+										<div class="col-sm-7">
+											<input type="text"  name = "artId" class="form-control" value="${article.artId }" 
+												id="artId" >  
+										</div>
+									</div>
 									<div class="form-group">
 										<label for="inputPassword3" class="col-sm-1 control-label">博文标题</label>
 										<div class="col-sm-7">
@@ -102,7 +132,8 @@
 									<div class="form-group">
 										<label for="inputPassword3" class="col-sm-1 control-label">封面</label>
 										<div class="col-sm-7">
-											 <input type="file"name="artPicture"/><br>
+											 <input type="file" id = "artPicture" name="file"/><br>
+											<img src="<%=basePath%>${article.artPicture}" width="80" height="50"> 
 										</div>
 									</div>
 									
@@ -118,8 +149,8 @@
 
 									<div class="form-group" >
 										<div class="col-sm-offset-1 col-sm-11" align = "center">
-										<button type="submit" class="btn btn-primary" onclick="return checkForm()">Confirm</button>
-										<button type="reset" class="btn btn-default" >Reset</button> 
+										<button type="submit" id = "submit" class="btn btn-primary" onclick="return checkForm()">Confirm</button>
+										<button type="reset" class="btn btn-default"  onclick="goBack()">Back</button> 
 										</div>
 									</div>
 								</form>
