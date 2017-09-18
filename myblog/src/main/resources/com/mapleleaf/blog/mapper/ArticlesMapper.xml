@@ -169,7 +169,8 @@
       ART_ISRECOMMEND = #{artIsrecommend,jdbcType=CHAR},
       ART_BROWSER = #{artBrowser,jdbcType=INTEGER},
       TYPE_ID = #{typeId,jdbcType=INTEGER},
-      COMM_ID = #{commId,jdbcType=INTEGER}
+      COMM_ID = #{commId,jdbcType=INTEGER},
+      ART_CONTENT = #{artContent,jdbcType=LONGVARBINARY} 
     where ART_ID = #{artId,jdbcType=INTEGER}
   </update>
 </mapper>

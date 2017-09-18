@@ -152,8 +152,13 @@ public class articlesController {
 			String imageName = contentType.substring(contentType.indexOf("/") + 1);
 			path = "picture/" + uuid + "." + imageName;
 			artPicture.transferTo(new File(pathRoot + path));
+			article.setArtPicture(path);
+		}else{
+			Articles article1;
+			article1 = articleService.selectByArtId(article.getArtId());
+			article.setArtPicture(article1.getArtPicture());
 		}
-		article.setArtPicture(path);
+		
 		System.out.println(article.getArtContent().toString());
 		Integer flag = 0;
 		flag = articleService.updateByPrimaryKey(article);

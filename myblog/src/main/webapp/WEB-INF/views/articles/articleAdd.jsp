@@ -26,6 +26,17 @@
 			$('#artContent').val(CKEDITOR.instances.artContent.getData());
 		});
 	});
+	// 检查提交添加类型是否为空
+	function checkForm(){
+		var artTitle = document.getElementById("artTitle").value;
+		var artContent = document.getElementById("artContent").value;
+		if(artTitle==""||artTitle==null){
+			alert("博文标题不能为空");
+			return false;
+		}else{
+		return true;
+		}
+	}
 </script>
 </head>
 <body>
@@ -54,7 +65,7 @@
 									<div class="form-group">
 										<label for="inputPassword3" class="col-sm-1 control-label">博文标题</label>
 										<div class="col-sm-7">
-											<input type="text"  name = "artTitle" class="form-control" value="" 
+											<input type="text"  name = "artTitle" class="form-control"  
 												id="artTitle" >  
 										</div>
 									</div>
@@ -105,7 +116,7 @@
 
 									<div class="form-group" >
 										<div class="col-sm-offset-1 col-sm-11" align = "center">
-										<button type="submit" id="confirm" class="btn btn-primary" >Confirm</button>
+										<button type="submit" id="confirm" class="btn btn-primary" onclick="return checkForm()">Confirm</button>
 										<button type="reset" class="btn btn-default" >Reset</button> 
 										</div>
 									</div>

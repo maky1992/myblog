@@ -40,14 +40,25 @@ function checkFlag(){
 		document.getElementById("artPicture").disabled=true;
 		document.getElementById("artContent").disabled=true;
 		document.getElementById("submit").style.display = 'none';
+		document.getElementById("artPicture").style.display = 'none';
 		}
 	 else if(flag == "update"){
-		 //document.getElementById("artId").disabled=true;
 	} 
 }
 //页面返回按钮跳转
 function goBack(){
 	window.location.href="<%=basePath%>article/toArticleList";
+}
+//检查提交添加类型是否为空
+function checkForm(){
+	var artTitle = document.getElementById("artTitle").value;
+	var artContent = document.getElementById("artContent").value;
+	if(artTitle==""||artTitle==null){
+		alert("博文标题不能为空");
+		return false;
+	}else{
+	return true;
+	}
 }
 </script>
 </head>
@@ -76,9 +87,8 @@ function goBack(){
 									novalidate>
 									<h4 style="color:red:">${msg }</h4>
 									<div class="form-group">
-										<label for="inputPassword3" class="col-sm-1 control-label">博文ID</label>
 										<div class="col-sm-7">
-											<input type="text"  name = "artId" class="form-control" value="${article.artId }" 
+											<input type="hidden"  name = "artId" class="form-control" value="${article.artId }" 
 												id="artId" >  
 										</div>
 									</div>
@@ -132,7 +142,7 @@ function goBack(){
 									<div class="form-group">
 										<label for="inputPassword3" class="col-sm-1 control-label">封面</label>
 										<div class="col-sm-7">
-											 <input type="file" id = "artPicture" name="file"/><br>
+											 <input type="file" id = "artPicture" value = "${article.artPicture}" name="file"/><br>
 											<img src="<%=basePath%>${article.artPicture}" width="80" height="50"> 
 										</div>
 									</div>
