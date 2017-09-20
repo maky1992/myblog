@@ -76,4 +76,10 @@ public class ArticleService implements IArticleService{
 		flag = articlesMapper.updateByPrimaryKey(article);
 		return flag;
 	}
+	@Override
+	public Articles queryByTitle(String artTitle) {
+		Articles articles1;
+		articles1 = articlesMapper.queryByTitle(artTitle);
+		return articles1;
+	}
 }

@@ -37,6 +37,27 @@
 		return true;
 		}
 	}
+	//ajax 检测博文名称是否重复
+	function checkUser(){
+		//var artTitle =  document.getElementById("artTitle").value;
+		var artTitle = $("#artTitle").val(); 
+		//alert(artTitle);
+		$.ajax({
+	           url:"<%=basePath%>article/queryByTitle",
+	           type:"post",
+	           data:{"artTitle":artTitle},
+	           dataType:"json",
+	           
+	          success:function(data){
+	               if (data==true ) {
+	                $("#userSpan").text("用户名已存在");
+	                $("#form-username").val(' ');
+	            }else if(data==false && username!=""){
+	                $("#userSpan").text("用户名可用");
+	            }
+	          }
+	        });
+	}
 </script>
 </head>
 <body>
@@ -66,7 +87,7 @@
 										<label for="inputPassword3" class="col-sm-1 control-label">博文标题</label>
 										<div class="col-sm-7">
 											<input type="text"  name = "artTitle" class="form-control"  
-												id="artTitle" >  
+												id="artTitle" onblur="checkUser()">  
 										</div>
 									</div>
 									<div class="form-group">

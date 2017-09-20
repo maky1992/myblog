@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mapleleaf.blog.entity.Articles;
@@ -102,7 +103,10 @@ public class articlesController {
 		Integer flag = 0;
 		flag = articleService.delete(article.getArtId());
 		if (flag != 0) {
-			model.addAttribute("msg", "删除成功！");
+			//model.addAttribute("msg", "删除成功！");
+			ArrayList<Articles> typesList = null;
+			typesList = articleService.selectArticlesList();
+			model.addAttribute("typesList", typesList);
 			return "articles/articlePublishList";
 		} else {
 			model.addAttribute("msg", "删除失败！");
@@ -130,6 +134,22 @@ public class articlesController {
 		model.addAttribute("flag", flag);
 		return "articles/articleUpdate";
 	}
+	/**
+	 * 查看博文题目是否重复
+	 * 
+	 * @param model
+	 * @param article
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/queryByTitle", method = RequestMethod.GET)
+	public String queryByTitle(Model model,Articles article) {
+		Articles article1 = null;
+		article1 = articleService.queryByTitle(article.getArtTitle());
+		
+		return "articles/articleUpdate";
+	}	
+	
 
 	/**
 	 * 更新操作
@@ -170,4 +190,5 @@ public class articlesController {
 			return "articles/articlePublishList";
 		}
 	}
+
 }

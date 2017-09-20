@@ -37,8 +37,8 @@
 			    <h4 class="text-center">修改用户密码</h4>
 			      <form class="text-center" action = "<%=basePath%>admin/modifyPassword" method = "post">
 			   &nbsp&nbsp
-			      新密码  ：<input id= "password" type = "text" name = "adminPassword" ><br><br>
-			      密码确认  ：<input id= "passwordconfirm" type = "text" name = "passwordconfirm" ><br><br>
+			      新密码  ：<input id= "password" type = "password" name = "adminPassword" ><br><br>
+			      密码确认  ：<input id= "passwordconfirm" type = "password" name = "passwordconfirm" ><br><br>
 			      <input type = "submit" value = "提交" onclick = "return chenkPassword()" >
 			      &nbsp&nbsp&nbsp&nbsp&nbsp
 			      <input type = "reset" value = "重置">

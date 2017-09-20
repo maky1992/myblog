@@ -23,4 +23,9 @@ public interface ArticlesMapper {
 	 * @return
 	 */
 	ArrayList<Articles> selectArticlesList();
+	/**
+	 * 根据博文名称查询博文
+	 * @return
+	 */
+	Articles queryByTitle(String artTitle);
 }

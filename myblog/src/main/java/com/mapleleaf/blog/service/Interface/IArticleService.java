@@ -33,5 +33,11 @@ public interface IArticleService {
 	 * @return
 	 */
 	Integer updateByPrimaryKey(Articles article);
+	/**
+	 * 通过博文名称查询博文
+	 * @param artId
+	 * @return
+	 */
+	Articles queryByTitle(String artTitle);
 
 }
