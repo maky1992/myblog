@@ -13,7 +13,7 @@
     <result column="COMM_ID" property="commId" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.mapleleaf.blog.entity.Articles" extends="BaseResultMap" >
-    <result column="ART_CONTENT" property=" " jdbcType="LONGVARBINARY" />
+    <result column="ART_CONTENT" property="artContent" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Base_Column_List" >
     ART_ID, ART_TITLE, ART_KEYWORD, ART_PUBLISHDATE, ART_PICTURE, ART_ISRECOMMEND, ART_BROWSER, 
@@ -28,12 +28,12 @@
     from articles
     where ART_ID = #{artId,jdbcType=INTEGER}
   </select>
-<!--   <select id="queryByTitle" resultMap="ResultMapWithBLOBs" parameterType="String" >
+   <select id="queryByTitle" resultMap="ResultMapWithBLOBs" parameterType="String" >
     select 
     <include refid="Base_Column_List" />
     from articles
     where ART_TITLE = #{artTitle,jdbcType=VARCHAR}
-  </select> -->
+  </select>
    <select id="selectArticlesList" resultMap="ResultMapWithBLOBs"  >
     select 
     <include refid="Base_Column_List" />

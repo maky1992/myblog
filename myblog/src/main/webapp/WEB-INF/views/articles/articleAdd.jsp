@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -41,7 +42,6 @@
 	function checkUser(){
 		//var artTitle =  document.getElementById("artTitle").value;
 		var artTitle = $("#artTitle").val(); 
-		//alert(artTitle);
 		$.ajax({
 	           url:"<%=basePath%>article/queryByTitle",
 	           type:"post",
@@ -50,10 +50,10 @@
 	           
 	          success:function(data){
 	               if (data==true ) {
-	                $("#userSpan").text("用户名已存在");
-	                $("#form-username").val(' ');
-	            }else if(data==false && username!=""){
-	                $("#userSpan").text("用户名可用");
+	                $("#userSpan").text("博文名已存在");
+	                $("#artTitle").val(' ');
+	            }else if(data==false && artTitle!=""){
+	                $("#userSpan").text("博文名可用");
 	            }
 	          }
 	        });
@@ -89,6 +89,7 @@
 											<input type="text"  name = "artTitle" class="form-control"  
 												id="artTitle" onblur="checkUser()">  
 										</div>
+										<span id="userSpan" style="color:#934846;font-size:18px;"></span>
 									</div>
 									<div class="form-group">
 										<label for="inputEmail3" class="col-sm-1 control-label">博文分类</label>

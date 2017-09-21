@@ -142,12 +142,11 @@ public class articlesController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/queryByTitle", method = RequestMethod.GET)
-	public String queryByTitle(Model model,Articles article) {
+	@RequestMapping(value = "/queryByTitle", method = RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public String queryByTitle(Model model,String artTitle) {
 		Articles article1 = null;
-		article1 = articleService.queryByTitle(article.getArtTitle());
-		
-		return "articles/articleUpdate";
+		article1 = articleService.queryByTitle(artTitle);
+		return article1==null?"false":"true";
 	}	
 	
 
