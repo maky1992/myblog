@@ -30,4 +30,13 @@ public class diaryController {
 		model.addAttribute("typesList", typesList);
 		return "diary/diaryList";
 	}
+	/**
+	 * 转向日记增加页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/toDiaryAdd", method = RequestMethod.GET)
+	public String toDiaryAdd() {
+		return "diary/diaryAdd";
+	}
 }

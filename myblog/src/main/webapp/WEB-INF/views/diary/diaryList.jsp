@@ -58,9 +58,9 @@
 												<td class="center">${types.diaryId }</td>
 												<td>${types.diaryTitle }</td>
 												<td class="center">
-													<a class="btn btn-default btn-xs" href="<%=basePath%>type/openType?typeId=${types.typeId}" data-original-title="Open" data-toggle="tooltip"><i class="fa fa-file"></i></a>
-													<a class="btn btn-primary btn-xs" href="<%=basePath%>type/updateTypeGet?typeId=${types.typeId}" data-original-title="Edit" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
-													<a class="btn btn-danger btn-xs" href="<%=basePath%>type/deleteType?typeId=${types.typeId}"  data-original-title="Remove" data-toggle="tooltip"><i class="fa fa-times"></i></a>
+													<a class="btn btn-default btn-xs" href="<%=basePath%>type/openType?diaryId=${types.diaryId}" data-original-title="Open" data-toggle="tooltip"><i class="fa fa-file"></i></a>
+													<a class="btn btn-primary btn-xs" href="<%=basePath%>type/updateTypeGet?diaryId=${types.diaryId}" data-original-title="Edit" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
+													<a class="btn btn-danger btn-xs" href="<%=basePath%>type/deleteType?diaryId=${types.diaryId}"  data-original-title="Remove" data-toggle="tooltip"><i class="fa fa-times"></i></a>
 												</td>
 											</tr>
 											</c:forEach>
@@ -111,26 +111,7 @@
 	} */
 	$(document).ready(function(){
 	$("#submit").click(function(){
-	//function checkForm(){
-		var typeName = $("#typeName").val(); 
-		if(typeName==""||typeName==null){
-			alert("类型名不能为空");
-		}else{
-			$.ajax({
-		           url:"<%=basePath%>type/addType",
-		           type:"post",
-		           data:{"typeName":typeName},
-		           dataType:"json",
-		           success:function(data){
-		               if (data==true ) {
-		                alert("添加成功");
-		                window.location.href="<%=basePath%>type/toTypeList";
-		            }else {
-		                alert("添加失败");
-		            }
-		          }
-		        });
-		}
+		window.location.href="<%=basePath%>diary/toDiaryAdd";
 	});
 	  });
 </script>
