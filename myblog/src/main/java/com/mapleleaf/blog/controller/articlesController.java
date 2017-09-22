@@ -77,7 +77,7 @@ public class articlesController {
 			String contentType = artPicture.getContentType();
 			// 获得文件后缀名称
 			String imageName = contentType.substring(contentType.indexOf("/") + 1);
-			path = "picture/" + uuid + "." + imageName;
+			path = "assets/picture" + uuid + "." + imageName;
 			artPicture.transferTo(new File(pathRoot + path));
 		}
 		article.setArtPicture(path);

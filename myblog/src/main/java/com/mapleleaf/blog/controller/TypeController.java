@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mapleleaf.blog.entity.Types;
 import com.mapleleaf.blog.service.Interface.ITypeService;
@@ -41,18 +42,19 @@ public class TypeController {
 	 * 添加分类
 	 * @return
 	 */
+	@ResponseBody
 	@RequestMapping(value="addType",method=RequestMethod.POST)
 	public String addType(Types types,Model model){
 		Integer flag = 0;
 		flag = typeService.insert(types);
 		if(flag != 0){
-			model.addAttribute("msg", "添加成功！");
+			//model.addAttribute("msg", "添加成功！");
 			//session.setAttribute("msg", "添加成功！");
-			return "articles/articleTypeList";
+			return "true";
 		}else{
-			model.addAttribute("msg", "添加失败！");
+			//model.addAttribute("msg", "添加失败！");
 			//session.setAttribute("msg", "添加失败！");
-			return "articles/articleTypeList";
+			return "false";
 		}
 		
 	}
@@ -66,7 +68,7 @@ public class TypeController {
 		flag = typeService.deleteById(typeId);
 		if(flag != 0){
 			model.addAttribute("msg", "删除成功！");
-			return "articles/articleTypeList";
+			return "redirect:/type/toTypeList";
 		}else{
 			model.addAttribute("msg", "删除失败！");
 			return "articles/articleTypeList";

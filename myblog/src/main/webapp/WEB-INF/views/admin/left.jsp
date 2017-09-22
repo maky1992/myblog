@@ -41,6 +41,9 @@
 			                </ul>
 			              </li>
 			              <li><a href="#"><i class="fa fa-smile-o" ></i><span>日记管理</span></a>
+			              	<ul class="sub-menu">
+			                  <li class="type"><a href="<%=basePath%>diary/toDiaryList">日记发布管理</a></li>
+			                </ul>
 			              </li>
 			              <li><a href="<%=basePath%>type/toTypeList"><i class="fa fa-text-height" ></i><span>工具管理</span></a>
 			              </li>

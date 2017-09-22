@@ -26,6 +26,11 @@
     from diary
     where DIARY_ID = #{diaryId,jdbcType=INTEGER}
   </select>
+  <select id="selectDiaryList" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    from diary
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from diary
     where DIARY_ID = #{diaryId,jdbcType=INTEGER}

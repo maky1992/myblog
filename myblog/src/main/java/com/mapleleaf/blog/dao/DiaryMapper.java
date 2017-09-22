@@ -1,5 +1,8 @@
 package com.mapleleaf.blog.dao;
 
+import java.util.ArrayList;
+
+import com.mapleleaf.blog.entity.Articles;
 import com.mapleleaf.blog.entity.Diary;
 
 public interface DiaryMapper {
@@ -16,4 +19,9 @@ public interface DiaryMapper {
     int updateByPrimaryKeyWithBLOBs(Diary record);
 
     int updateByPrimaryKey(Diary record);
+    /**
+	 * 查询所有日记
+	 * @return
+	 */
+	ArrayList<Diary> selectDiaryList();
 }

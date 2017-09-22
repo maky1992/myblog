@@ -30,8 +30,8 @@
 					
 					<ol class="breadcrumb">
 					  <li><a href="#">首页</a></li>
-					  <li><a href="#">文章管理</a></li>
-					  <li class="active">博文分类管理</li>
+					  <li><a href="#">日记管理</a></li>
+					  <li class="active">日记发布管理</li>
 					</ol> 
 				</div>		
 			    
@@ -39,25 +39,24 @@
 					<div class="col-md-12">
 						<div class="block-flat">
 							<div class="header">							
-								<h3>博文分类</h3>
+								<h3>日记管理</h3>
 							</div>
 							<div class="content">
-									<input type="text" id = "typeName" name="typeName" placeholder="请输入类型名">
-									<button class="btn btn-primary"  id = "submit" >添加类型</button>
+									<button class="btn btn-primary"  id = "submit" >添加日记</button>
 								<div class="table-responsive">
 									<table class="table table-bordered" id="datatable-icons" >
 										<thead>
 											<tr>
-												<th>类型ID</th>
-												<th>类型名</th>
+												<th>日记ID</th>
+												<th>日记标题</th>
 												<th>操作</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach items="${typesList }" var="types">
 												<tr class="even gradeC">
-												<td class="center">${types.typeId }</td>
-												<td>${types.typeName }</td>
+												<td class="center">${types.diaryId }</td>
+												<td>${types.diaryTitle }</td>
 												<td class="center">
 													<a class="btn btn-default btn-xs" href="<%=basePath%>type/openType?typeId=${types.typeId}" data-original-title="Open" data-toggle="tooltip"><i class="fa fa-file"></i></a>
 													<a class="btn btn-primary btn-xs" href="<%=basePath%>type/updateTypeGet?typeId=${types.typeId}" data-original-title="Edit" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
