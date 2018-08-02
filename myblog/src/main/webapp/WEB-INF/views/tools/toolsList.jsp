@@ -29,8 +29,7 @@
 					
 					<ol class="breadcrumb">
 					  <li><a href="#">首页</a></li>
-					  <li><a href="#">文章管理</a></li>
-					  <li class="active">博文分类管理</li>
+					  <li class="active">工具管理</li>
 					</ol> 
 				</div>		
 			    
@@ -38,41 +37,32 @@
 					<div class="col-md-12">
 						<div class="block-flat">
 							<div class="header">							
-								<h3>博文发布</h3>
+								<h3>工具管理</h3>
 							</div>
 							<div class="content">
-								<form action="<%=basePath%>article/toAddArticle"  method="post" >
-									<button class="btn btn-primary" type="submit">添加博文</button>
-								</form>
+								<a href="<%=basePath%>tools/toAddTools"><button class="btn btn-primary">添加工具</button></a>	
 								<div class="table-responsive">
 									<table class="table table-bordered" id="datatable-icons" >
 										<thead>
 											<tr>
-												<th>博文ID</th>
-												<th>博文题目</th>
-												<th>博文发布日期</th>
-												<th>博文是否推荐</th>
+												<th>工具ID</th>
+												<th>工具名称</th>
+												<th>工具连接</th>
+												<th>工具密码</th>
 												<th>操作</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${articlesList }" var="articles">
+											<c:forEach items="${toolList }" var="tool">
 												<tr class="even gradeC">
-												<td class="center">${articles.artId }</td>
-												<td>${articles.artTitle }</td>
-												<td>${articles.artPublishdate }</td>
-												<c:choose>
-												<c:when test="${articles.artIsrecommend == 0}">
-												<td id = "artIsrecommend">不推荐</td>
-												</c:when>
-												<c:when test="${articles.artIsrecommend == 1}">
-												<td id = "artIsrecommend">推荐</td>
-												</c:when>
-												</c:choose>
+												<td class="center">${tool.toolId }</td>
+												<td>${tool.toolName }</td>
+												<td>${tool.toolLink }</td>
+												<td>${tool.toolPassword }</td>
 												<td class="center">
-													<a class="btn btn-default btn-xs" href="<%=basePath%>article/searchArticle?artId=${articles.artId}&flag=details" data-original-title="Open" data-toggle="tooltip"><i class="fa fa-file"></i></a>
-													<a class="btn btn-primary btn-xs" href="<%=basePath%>article/searchArticle?artId=${articles.artId}&flag=update" data-original-title="Edit" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
-													<a class="btn btn-danger btn-xs" href="<%=basePath%>article/deleteArticle?artId=${articles.artId}"  data-original-title="Remove" data-toggle="tooltip"><i class="fa fa-times"></i></a>
+													<a class="btn btn-default btn-xs" href="<%=basePath%>tools/searchTool?toolId=${tool.toolId}&flag=details" data-original-title="Open" data-toggle="tooltip"><i class="fa fa-file"></i></a>
+													<a class="btn btn-primary btn-xs" href="<%=basePath%>tools/searchTool?toolId=${tool.toolId}&flag=update" data-original-title="Edit" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
+													<a class="btn btn-danger btn-xs" href="<%=basePath%>tools/deleteTool?toolId=${tool.toolId}"  data-original-title="Remove" data-toggle="tooltip"><i class="fa fa-times"></i></a>
 												</td>
 											</tr>
 											</c:forEach>
@@ -86,26 +76,19 @@
 			  </div>
 			</div> 
 </body>
-<script type="text/javascript">
-	$(".sub-menu .type").addClass('active');
-</script>
+
 <script type="text/javascript">
 
 	
 	$(document).ready(function(){
 	  //initialize the javascript
-	  App.init();
+	  
 	  App.dataTables();
 	  	
 	  //Horizontal Icons dataTable
 	  $('#datatable-icons').dataTable();
 	});
 	
-	var msg = "";
-	msg = "${msg}";
-	if(msg != null && msg != ""){
-		window.location.href="<%=basePath%>article/toArticleList";
-	}
 	
 	  
 </script>

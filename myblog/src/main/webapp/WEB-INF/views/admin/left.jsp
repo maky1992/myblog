@@ -36,13 +36,13 @@
 			            <ul class="cl-vnavigation">
 			              <li><a href="#" ><i class="fa fa-home"></i><span>文章管理</span></a>
 			                <ul class="sub-menu">
-			                  <li><a href="<%=basePath%>article/toArticleList">博文发布管理</a></li>
-			                  <li class="type"><a href="<%=basePath%>type/toTypeList">博文分类管理</a></li>
+			                  <li class="type"><a href="<%=basePath%>article/toArticleList">博文发布管理</a></li>
+			                  <li ><a href="<%=basePath%>type/toTypeList">博文分类管理</a></li>
 			                </ul>
 			              </li>
 			              <li><a href="#"><i class="fa fa-smile-o" ></i><span>日记管理</span></a>
 			              </li>
-			              <li><a href="<%=basePath%>type/toTypeList"><i class="fa fa-text-height" ></i><span>工具管理</span></a>
+			              <li><a href="<%=basePath%>tools/toToolsList"><i class="fa fa-text-height" ></i><span>工具管理</span></a>
 			              </li>
 			              <li><a href="#"><i class="fa fa-table" ></i><span>评论管理</span></a>
 			              </li>              

@@ -6,9 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.mapleleaf.blog.entity.Admin;
 import com.mapleleaf.blog.service.Interface.IAdminService;
+/**
+ * @author: 韩晋峰
+ * @Email :13080304993@163.com
+ * @Date: 2017年10月10日
+ * @Description:管理员控制器
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdminController {

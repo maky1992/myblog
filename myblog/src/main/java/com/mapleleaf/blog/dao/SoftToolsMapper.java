@@ -1,5 +1,7 @@
 package com.mapleleaf.blog.dao;
 
+import java.util.ArrayList;
+
 import com.mapleleaf.blog.entity.SoftTools;
 
 public interface SoftToolsMapper {
@@ -14,4 +16,6 @@ public interface SoftToolsMapper {
     int updateByPrimaryKeySelective(SoftTools record);
 
     int updateByPrimaryKey(SoftTools record);
+    
+    ArrayList<SoftTools> selectAllTools();
 }

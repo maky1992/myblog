@@ -1,5 +1,4 @@
 package com.mapleleaf.blog.controller;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,10 +19,16 @@ import com.mapleleaf.blog.entity.Articles;
 import com.mapleleaf.blog.entity.Types;
 import com.mapleleaf.blog.service.Interface.IArticleService;
 import com.mapleleaf.blog.service.Interface.ITypeService;
-
+/**
+ * 
+ * @author: 韩晋峰
+ * @Email :13080304993@163.com
+ * @Date: 2017年10月10日
+ * @Description: 博客文章控制器
+ */
 @Controller
 @RequestMapping("/article")
-public class articlesController {
+public class ArticlesController {
 	@Autowired
 	private IArticleService articleService;
 	@Autowired
@@ -36,9 +41,9 @@ public class articlesController {
 	 */
 	@RequestMapping(value = "/toArticleList", method = RequestMethod.GET)
 	public String articleListGet(Model model) {
-		ArrayList<Articles> typesList = null;
-		typesList = articleService.selectArticlesList();
-		model.addAttribute("typesList", typesList);
+		ArrayList<Articles> articlesList = null;
+		articlesList = articleService.selectArticlesList();
+		model.addAttribute("articlesList", articlesList);
 		return "articles/articlePublishList";
 	}
 
@@ -78,9 +83,15 @@ public class articlesController {
 			// 获得文件后缀名称
 			String imageName = contentType.substring(contentType.indexOf("/") + 1);
 			path = "picture/" + uuid + "." + imageName;
-			artPicture.transferTo(new File(pathRoot + path));
+			File file = new File((pathRoot + path));
+			if(file.exists()){
+				artPicture.transferTo(file);
+			}else{
+				file.mkdirs();
+				artPicture.transferTo(file);
+			}
 		}
-		article.setArtPicture(path);
+		article.setArtPicture(String.valueOf(path.split("/")[1]));
 		System.out.println(article.getArtContent().toString());
 		Integer flag = 0;
 		flag = articleService.insert(article);

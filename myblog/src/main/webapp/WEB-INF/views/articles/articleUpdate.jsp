@@ -112,7 +112,13 @@ function checkForm(){
 											</select>
 										</div>
 									</div>
-									
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-1 control-label">关键字</label>
+										<div class="col-sm-7">
+											<input type="text"  name = "artKeyword" class="form-control" value="${article.artKeyword }" 
+												id="artKeyword" >  
+										</div>
+									</div>
 									<div class="form-group">
 										<label for="inputPassword3" class="col-sm-1 control-label">是否推荐</label>
 										<div class="col-sm-7">
@@ -131,19 +137,13 @@ function checkForm(){
 											
 										</div>
 									</div>
-									<div class="form-group">
-										<label for="inputPassword3" class="col-sm-1 control-label">关键字</label>
-										<div class="col-sm-7">
-											<input type="text"  name = "artKeyword" class="form-control" value="${article.artKeyword }" 
-												id="artKeyword" >  
-										</div>
-									</div>
+									
 									
 									<div class="form-group">
 										<label for="inputPassword3" class="col-sm-1 control-label">封面</label>
 										<div class="col-sm-7">
 											 <input type="file" id = "artPicture" value = "${article.artPicture}" name="file"/><br>
-											<img src="<%=basePath%>${article.artPicture}" width="80" height="50"> 
+											<img src="<%=basePath%>picture/${article.artPicture}" width="80" height="50"> 
 										</div>
 									</div>
 									
